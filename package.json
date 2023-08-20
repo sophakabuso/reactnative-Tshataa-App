@@ -10,17 +10,16 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^13.0.0",
-<<<<<<< HEAD
+    "@expo/webpack-config": "^18.1.2",
+    "@react-navigation/bottom-tabs": "^6.5.8",
     "@react-navigation/native": "^6.1.7",
     "@react-navigation/native-stack": "^6.9.13",
-=======
-    "@expo/webpack-config": "^18.1.2",
->>>>>>> 8ca26faf6b4d50bbe5f2a5892837e4dca20f3380
     "expo": "~49.0.7",
     "expo-status-bar": "~1.6.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.72.3",
+    "react-native-screens": "~3.22.0",
     "react-native-web": "~0.19.6",
     "yup": "^1.2.0"
   },
