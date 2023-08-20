@@ -4,6 +4,7 @@ import ChatListItem from '../components/chatListItem';
 import ChatInput from '../components/ChatInput';
 import ChatRequest from '../components/ChatRequest';
 import FAB from '../components/FAB';
+import ChatComponent from '../components/ChatComponent';
 
 const HomeScreen = () => {
   const [isModalVisible, setIsModalVisible] = useState(false); // Set initial modal state to false
@@ -14,12 +15,12 @@ const HomeScreen = () => {
 
   return (
     <View style={styles.container}>
-      <ScrollView>
+    {/*}  <ScrollView>
         <ChatListItem />
         <ChatInput />
       </ScrollView>
 
-      {/* Modal */}
+     
       <Modal transparent={true} visible={isModalVisible} onRequestClose={toggleModal}>
         <View style={styles.modalContainer}>
           <ChatRequest />
@@ -29,10 +30,11 @@ const HomeScreen = () => {
         </View>
       </Modal>
 
-      {/* FAB */}
+      
       <Pressable style={styles.fabContainer} onPress={toggleModal}>
         <FAB />
-      </Pressable>
+      </Pressable>*/}
+      <ChatComponent/>
     </View>
   );
 };
