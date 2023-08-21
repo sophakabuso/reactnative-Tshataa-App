@@ -6,7 +6,11 @@ import LoginScreen from './pages/LoginScreen';
 import RegisterScreen from './pages/RegisterScreen';
 import {usefonts} from 'expo-font';
 import HomeScreen from './pages/HomeScreen';
+import ProfileScreen from './pages/ProfileScreen';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import { Ionicons } from '@expo/vector-icons';
+import HomeStackNav from './components/HomeStackNav';
+import ChatScreen from './pages/ChatScreen';
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -17,8 +21,11 @@ export default function App() {
  
   return (
     <NavigationContainer>
-      <Stack.Navigator>
       
+      <Stack.Navigator
+        initialRouteName='HomeStackNav'
+      >
+        
         <Stack.Screen name="Login" options={{
           headerShown: false
         }}>
@@ -29,7 +36,17 @@ export default function App() {
           }}  >
           {(props)=><RegisterScreen {...props} />}
         </Stack.Screen>  
-      </Stack.Navigator>
+        <Stack.Screen name="HomeStackNav" options={{
+         headerShown: false
+          }}  >
+          {(props)=><HomeStackNav {...props} />}
+        </Stack.Screen>  
+        <Stack.Screen name="Chat" options={{
+         headerShown: false
+          }}  >
+          {(props)=><ChatScreen {...props} />}
+        </Stack.Screen>  
+      </Stack.Navigator> 
     </NavigationContainer>
   );
 }

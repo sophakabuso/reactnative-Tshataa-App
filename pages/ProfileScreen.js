@@ -48,14 +48,14 @@ const styles = StyleSheet.create({
   container1: {
     height: 280,
     width: '100%',
-    backgroundColor: 'silver',
+   
     justifyContent: 'center',
     alignItems: 'center',
   },
   container2: {
     height: 380,
     width: '100%',
-    backgroundColor: 'brown',
+  
   },
   image: {
     height: 200,
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
   imageContainer: {
     width: 200,
     height: 200,
-    backgroundColor: 'yellow',
+ 
   },
   camContainer: {
     height: 42,
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
   actionContainer: {
     height: 60,
     marginTop: 10,
-    backgroundColor: 'red',
+
     justifyContent: 'center',
   },
   saveText: {

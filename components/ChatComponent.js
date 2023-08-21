@@ -4,6 +4,7 @@ import { Entypo } from '@expo/vector-icons';
 
 export default function ChatComponent() {
   const userID = 'yoliINdd23';
+ 
   const texts = [
     {
       text: "Hi there!",
@@ -14,7 +15,41 @@ export default function ChatComponent() {
       userID: "otherUserID",
     },
     // Add more sample messages here...
+    {
+      text: "Hello!",
+      userID: userID,
+    },
+    {
+      text: "I'm doing well. How about you?",
+      userID: "otherUserID",
+    },
+    {
+      text: "That's great to hear!",
+      userID: userID,
+    },
+    {
+      text: "Yes, indeed.",
+      userID: "otherUserID",
+    },
+    {
+      text: "By the way, have you watched the latest movie?",
+      userID: userID,
+    },
+    {
+      text: "No, I haven't had a chance to watch it yet.",
+      userID: "otherUserID",
+    },
+    {
+      text: "You should definitely check it out. It's amazing!",
+      userID: userID,
+    },
+    {
+      text: "I'll add it to my watchlist. Thanks for the recommendation!",
+      userID: "otherUserID",
+    },
+    // Add more messages here...
   ];
+  
 
   const renderItem = ({ item, index }) => {
     return (

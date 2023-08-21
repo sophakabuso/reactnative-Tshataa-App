@@ -1,8 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native'; // Import the Image component
+import { StyleSheet, Text, View, Image, Pressable, Touchable } from 'react-native'; // Import the Image component
+import { TouchableOpacity } from 'react-native-web';
 
-export default function ChatListItem() {
+export default function ChatListItem({navigation}) {
   return (
+
     <View style={styles.container}>
       <Image
         style={styles.img}
@@ -10,6 +12,7 @@ export default function ChatListItem() {
           uri: 'https://example.com/your-image-url.jpg', // Replace with your actual image URL
         }}
       />
+      <TouchableOpacity style = {styles.Touchable} onPreess={()=>navigation.navigate('Chat')}>
       <View style={styles.rightContent}>
         <View style={styles.topText}>
           <Text style={styles.contactName}>Yoli</Text>
@@ -22,6 +25,8 @@ export default function ChatListItem() {
           </View>
         </View>
       </View>
+      </TouchableOpacity>
+     
     </View>
   );
 }
@@ -52,6 +57,9 @@ const styles = StyleSheet.create({
   contactName: {
     fontSize: 16,
     fontWeight: 'bold',
+  },
+  Touchable:{
+    flex:1
   },
   time: {
     fontSize: 12,
