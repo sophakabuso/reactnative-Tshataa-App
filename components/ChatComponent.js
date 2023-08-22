@@ -7,48 +7,88 @@ export default function ChatComponent() {
  
   const texts = [
     {
-      text: "Hi there!",
-      userID: userID,
+        text: 'Hi there ',
+        userID: 'userID'
     },
     {
-      text: "Hey, how's it going?",
-      userID: "otherUserID",
-    },
-    // Add more sample messages here...
-    {
-      text: "Hello!",
-      userID: userID,
+        text: 'Why here',
+        userID: 'assaffsafgdgwevc3'
     },
     {
-      text: "I'm doing well. How about you?",
-      userID: "otherUserID",
+        text: 'Why are we here',
+        userID: 'otherUserID'
     },
     {
-      text: "That's great to hear!",
-      userID: userID,
+        text: 'Just wanted to say hello!',
+        userID: 'userID'
     },
     {
-      text: "Yes, indeed.",
-      userID: "otherUserID",
+        text: 'I think this place is interesting.',
+        userID: 'assaffsafgdgwevc3'
     },
     {
-      text: "By the way, have you watched the latest movie?",
-      userID: userID,
+        text: 'Do you have any thoughts about this?',
+        userID: 'otherUserID'
     },
     {
-      text: "No, I haven't had a chance to watch it yet.",
-      userID: "otherUserID",
+        text: 'I agree, there seems to be a lot to explore.',
+        userID: 'userID'
     },
     {
-      text: "You should definitely check it out. It's amazing!",
-      userID: userID,
+        text: 'Has anyone been here before?',
+        userID: 'assaffsafgdgwevc3'
     },
     {
-      text: "I'll add it to my watchlist. Thanks for the recommendation!",
-      userID: "otherUserID",
+        text: 'I\'m not sure, but it\'s intriguing.',
+        userID: 'otherUserID'
     },
-    // Add more messages here...
-  ];
+    {
+        text: 'Maybe we can find some answers together.',
+        userID: 'userID'
+    },
+    {
+        text: 'I love the mysterious atmosphere.',
+        userID: 'assaffsafgdgwevc3'
+    },
+    {
+        text: 'Let\'s uncover the secrets hidden here.',
+        userID: 'otherUserID'
+    },
+    {
+        text: 'Agreed! It\'s like a puzzle waiting to be solved.',
+        userID: 'userID'
+    },
+    {
+        text: 'Do you think there are others around?',
+        userID: 'assaffsafgdgwevc3'
+    },
+    {
+        text: 'Hard to say, but we can keep an eye out.',
+        userID: 'otherUserID'
+    },
+    {
+        text: 'I hope we find some answers soon.',
+        userID: 'userID'
+    },
+    {
+        text: 'Maybe the history of this place holds clues.',
+        userID: 'assaffsafgdgwevc3'
+    },
+    {
+        text: 'We should research and see what we can discover.',
+        userID: 'otherUserID'
+    },
+    {
+        text: 'I\'m excited to see where this journey leads.',
+        userID: 'userID'
+    },
+    {
+        text: 'Let\'s embrace the unknown and learn from it.',
+        userID: 'assaffsaf 3'
+    }
+];
+
+
   
 
   const renderItem = ({ item, index }) => {
@@ -72,15 +112,19 @@ export default function ChatComponent() {
           </View>
           <View style={styles.timeSent}>
             <Text style={styles.whiteText}>1:36 PM</Text>
-            {item.userID === userID && (
-              <>
-                <Entypo name="dot-single" color="#FFF" size={16} />
+            {
+              item.userID === userID &&(<>
+              <Entypo name="dot-single" color="#FFF" size={16} />
                 <Text style={styles.whiteText}>Sent</Text>
-              </>
-            )}
+                </>)
+            }
+           
+                
+              </View>
+          
           </View>
         </View>
-      </View>
+     
     );
   };
 
@@ -109,20 +153,21 @@ const styles = StyleSheet.create({
   },
   textBox: {
     padding: 10,
+    width: 200
   },
   leftText: {
-    backgroundColor: '#D6D6D6', // Gray background for received messages
-    borderRadius: 15,
-    borderBottomRightRadius: 0,
-    borderTopRightRadius: 15,
-    alignSelf: 'flex-start',
-  },
-  rightText: {
-    backgroundColor: '#2EC4B6', // Teal background for sent messages
+    backgroundColor: '#3F5973', // Gray background for received messages
     borderRadius: 15,
     borderBottomLeftRadius: 0,
-    borderTopLeftRadius: 15,
-    alignSelf: 'flex-end',
+  
+   
+  },
+  rightText: {
+    backgroundColor: '#3F5973', 
+    borderRadius: 15,
+    borderBottomLeftRadius: 0,
+  
+   
   },
   rightContent: {
     alignSelf: 'flex-end',

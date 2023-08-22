@@ -22,14 +22,15 @@ export default function ChatRequest() {
 
 const styles = StyleSheet.create({
   container: {
+    height:  220,
+    width: 320,
     backgroundColor: '#FFF',
-    borderRadius:'15',
+    borderRadius: 25,
     padding: 20,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
+   
   },
   textInput: {
-    backgroundColor: '#fff',
+    backgroundColor: '#FFF',
     borderRadius: 25,
     paddingVertical: 10,
     paddingHorizontal: 20,

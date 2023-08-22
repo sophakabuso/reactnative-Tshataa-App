@@ -1,11 +1,11 @@
 import React from 'react';
-import  CameraIcon  from '../assets/camera-solid.svg'; // Update the import path to match the actual path
+import CameraIcon from '../assets/camera-solid.svg'; // Update the import path to match the actual path
 import { StyleSheet, View, Image, Text, TextInput, Pressable } from 'react-native';
 
 export default function ProfileScreen() {
   return (
     <View style={styles.container}>
-      <View style={styles.container1}>
+      <View style={styles.topContainer}>
         <View style={styles.imageContainer}>
           <Image
             style={styles.image}
@@ -19,8 +19,8 @@ export default function ProfileScreen() {
           </View>
         </View>
       </View>
-      <View style={styles.container2}>
-        <View style={styles.container2a}>
+      <View style={styles.bottomContainer}>
+        <View style={styles.innerContainer}>
           <View style={styles.inputContainer}>
             <TextInput style={styles.textInput} placeholder="Email" />
             <TextInput style={styles.textInput} placeholder="Name" />
@@ -45,17 +45,17 @@ const styles = StyleSheet.create({
     backgroundColor: '#26394D',
     alignItems: 'center',
   },
-  container1: {
+  topContainer: {
     height: 280,
     width: '100%',
-   
     justifyContent: 'center',
     alignItems: 'center',
+
   },
-  container2: {
+  bottomContainer: {
     height: 380,
     width: '100%',
-  
+
   },
   image: {
     height: 200,
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
   imageContainer: {
     width: 200,
     height: 200,
- 
+
   },
   camContainer: {
     height: 42,
@@ -74,24 +74,23 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 146,
     left: 146,
+    borderRadius: 21,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   camIcon: {
     width: 24,
     height: 24,
-    backgroundColor: '#1EA0E5',
-    borderRadius: 21,
-    position: 'absolute',
-    top: 146,
-    left: 146,
-    justifyContent: 'center',
-    alignItems: 'center',
+
+
   },
-  container2a: {
-    width: '100%',
+  innerContainer: {
+    width: 320,
     height: 380,
     backgroundColor: '#FFF',
     borderRadius: 25,
     padding: 20,
+
   },
   saveOpt: {
     backgroundColor: '#1EA0E5',
@@ -99,7 +98,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     height: 46,
-    width: 320,
+
   },
   textInput: {
     borderRadius: 15,
@@ -110,10 +109,10 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   actionContainer: {
-    height: 60,
+    height:60,
     marginTop: 10,
-
     justifyContent: 'center',
+    
   },
   saveText: {
     color: '#FFF',

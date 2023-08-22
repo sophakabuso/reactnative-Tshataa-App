@@ -22,31 +22,32 @@ export default function ChatInput() {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#F4F6F8',
-    borderTopWidth: 1,
-    borderColor: '#ccc',
-    paddingVertical: 10,
-    paddingHorizontal: 15,
+    padding:10,
     flexDirection: 'row', // Set the main axis to be horizontal
-    alignItems: 'center', // Vertically center the content
+    justifyContent:'center',
+  
   },
   leftView: {
-    flexDirection: 'row', // Arrange elements horizontally
-    alignItems: 'center', // Vertically center the content
+    height:42,
+    borderRadius:21,
+    backgroundColor:'#FFF',
+    flexidirection:'row',
+    padding:7,
+    paddingHorizontal:10,
     flex: 1, // Take up remaining space
+    justifyContent:'center'
   },
   textInput: {
-    backgroundColor: '#fff',
-    borderRadius: 25,
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    fontSize: 16,
+    color: '#4F4F4F',
+   
+    fontSize: 15,
     flex: 1, // Take up remaining space
   },
   camera: {
-    width: 24,
-    height: 24,
-    marginLeft: 10,
+    width: 21,
+    height: 21,
+    marginHorizontal: 10,
+    backgroundColor:'#4F4F4F',
   },
   clip: {
     width: 24,
@@ -62,4 +63,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  emoji:{
+    color:'#272727',
+    margin:10
+  }
 });

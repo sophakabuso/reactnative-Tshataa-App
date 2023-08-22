@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     
   },
   innerContainer: {
-    minheight: 420,
+    height: 420,
     width: 320,
     backgroundColor: '#FFF',
     borderRadius: 25,
