@@ -4,11 +4,11 @@ import { View, StyleSheet, Text, TextInput, TouchableOpacity } from 'react-nativ
 export default function RegisterScreen({navigation}) {
   return (
     <View style={styles.container}>
-      <View style={styles.container1}>
+      <View style={styles.topContainer}>
         <Text style={styles.appName}>Tshataa</Text>
       </View>
-      <View style={styles.container2}>
-        <View style={styles.container2a}>
+      <View style={styles.bottomContainer}>
+        <View style={styles.inputContainer}>
           <View style={styles.inputContainer}>
             <TextInput style={styles.textInput} placeholder="Full Name" />
             <TextInput style={styles.textInput} placeholder="Email" />
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#26394D',
   },
-  container1: {
+  topContainer: {
     flex: 1.2,
     width: '100%',
     justifyContent: 'center',
@@ -44,26 +44,28 @@ const styles = StyleSheet.create({
   },
   appName: {
     fontFamily: 'berkshire',
-    fontSize: 54,
-    color: 'gold',
-    padding:40
+    fontSize: 48, 
+    fontWeight:'bold',
+    color:'#FFF'
+
   },
-  container2: {
+  bottomContainer: {
     flex: 2.8,
-    width: '100%',
+    
     justifyContent: 'center',
-    alignItems: 'center',
+    
   },
-  container2a: {
-    height: 420,
+  innerContainer: {
+    minheight: 420,
     width: 320,
     backgroundColor: '#FFF',
     borderRadius: 25,
     padding: 20,
   },
   inputContainer: {
-    height: 200,
-    justifyContent: 'space-between', // Add this to space elements vertically
+    flex:3,
+   
+   
   },
   actionButton: {
     backgroundColor: '#007AFF',
