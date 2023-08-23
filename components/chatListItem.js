@@ -33,30 +33,33 @@ export default function ChatListItem({navigation}) {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row', // To arrange the content in a row
-    alignItems: 'center', // To vertically center the content
+    flexDirection: 'row', 
+    alignItems: 'center',
     padding: 10,
     borderBottomWidth: 1,
     borderBottomColor: '#ccc',
   },
   img: {
-    width: 50, // Set the width of the image
-    height: 50, // Set the height of the image
-    backgroundColor:'#FFF',
-    borderRadius: 25, // Make it a circle by setting half of the width/height as border radius
+    width: 48, 
+    height: 48, 
+    backgroundColor:'#FFFf',
+    borderRadius: 25, 
   },
   rightContent: {
-    flex: 1, // To take up remaining space in the row
+    flex: 1, 
     marginLeft: 10,
+    paddingVertical:5,
+    justifyContent:'space-evenly',
   },
   topText: {
     flexDirection: 'row',
-    justifyContent: 'space-between', // To evenly distribute items
+    justifyContent: 'space-between', 
     alignItems: 'center',
   },
   contactName: {
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: 'bold',
+    color:'#E6E6E6',
   },
   Touchable:{
     flex:1

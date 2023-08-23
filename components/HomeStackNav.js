@@ -4,9 +4,10 @@ import HomeScreen from '../pages/HomeScreen';
 import ProfileScreen from '../pages/ProfileScreen';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-const Tab = createBottomTabNavigator();
+
 
 const HomeStackNav = () => {
+  const Tab = createBottomTabNavigator();
   return (
     <Tab.Navigator
       screenOptions={{

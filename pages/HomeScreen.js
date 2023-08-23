@@ -15,7 +15,9 @@ const HomeScreen = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      <Modal transparent={true} visible={isModalVisible} onRequestClose={toggleModal}>
+      <Modal 
+        transparent={true} 
+        visible={isModalVisible} animationType='slide'>
         <View style={styles.modalContainer}>
           <ChatRequest />
           <Pressable style={styles.closeButton} onPress={toggleModal}>
@@ -23,20 +25,17 @@ const HomeScreen = ({navigation}) => {
           </Pressable>
         </View>
       </Modal>
-      <ScrollView>
+      <ScrollView
+        scrollEnabled={true}
+        >
         <ChatListItem navigation={navigation} />
         <ChatListItem navigation={navigation} />
         <ChatListItem navigation={navigation} />
         <ChatListItem navigation={navigation} />
       </ScrollView>
-
-     
-      
-
-      
-      <Pressable style={styles.fabContainer} onPress={toggleModal}>
+     <Pressable style={styles.fabContainer} onPress={toggleModal}>
         <FAB />
-      </Pressable>
+     </Pressable>
     {/*  <ChatComponent/>**/}
     </View>
   );

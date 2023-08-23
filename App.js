@@ -35,23 +35,24 @@ export default function App() {
          headerShown: false
           }}  >
           {(props)=><RegisterScreen {...props} />}
+        </Stack.Screen>
+        <Stack.Screen name="Chat" options={{
+         headerShown: false
+          }}  >
+          {(props)=><ChatScreen {...props} />}
         </Stack.Screen>  
         <Stack.Screen name="HomeStackNav" options={{
          headerShown: false
           }}  >
           {(props)=><HomeStackNav {...props} />}
         </Stack.Screen>  
-        <Stack.Screen name="Chat" options={{
-         headerShown: false
-          }}  >
-          {(props)=><ChatScreen {...props} />}
-        </Stack.Screen>  
+        
       </Stack.Navigator> 
     </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create({ 
   container: {
     flex: 1,
     backgroundColor: '#fff',
