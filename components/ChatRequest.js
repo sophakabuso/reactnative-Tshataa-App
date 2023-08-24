@@ -1,52 +1,68 @@
-import React from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { TextInput } from 'react-native-web';
+import { Pressable, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import React from 'react'
 
-export default function ChatRequest() {
-  return (
-    <View style={styles.container}>
-      <TextInput
-        style={styles.textInput}
-        placeholder="Email"
-      />
-      <TextInput
-        style={styles.textInput}
-        placeholder="Message"
-      />
-      <Pressable style={styles.button}>
-        <Text style={styles.buttonText}>Send Request</Text>
-      </Pressable>
-    </View>
-  );
+const ChatRequest = ({onPress}) => {
+    return (
+        <View style={styles.centered}>
+            <View style={styles.container}>
+                <View style={styles.input}>
+                    <TextInput placeholder='Email' style={styles.textInput} />
+                    <TextInput placeholder='Message' style={styles.textInput} />
+                </View>
+                <TouchableOpacity style={styles.button} onPress={()=> onPress()}>
+                    <Text style={styles.buttonText}>Send Request</Text>
+                </TouchableOpacity>
+            </View>
+
+        </View>
+
+    )
 }
 
+export default ChatRequest
+
 const styles = StyleSheet.create({
-  container: {
-    height:  220,
-    width: 320,
-    backgroundColor: '#FFF',
-    borderRadius: 25,
-    padding: 20,
-   
-  },
-  textInput: {
-    backgroundColor: '#FFF',
-    borderRadius: 25,
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    fontSize: 16,
-    marginBottom: 10,
-  },
-  button: {
-    backgroundColor: '#007AFF',
-    borderRadius: 15,
-    height: 46,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  buttonText: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-});
+    centered:{
+       justifyContent: 'center',
+       alignItems: 'center',
+       flex: 1,
+       width: '100%'
+    },
+    container: {
+        width: 320,
+        height: 220,
+        backgroundColor: "#FFF",
+        borderRadius: 25,
+        padding: 20,
+
+    },
+    input: {
+        height: 105,
+        justifyContent: 'space-between'
+    },
+    textInput: {
+        height: 46,
+        width: 280,
+        borderRadius: 15,
+        borderWidth: 1,
+        borderColor: '#1EA0E5',
+        padding: 10
+
+    },
+    button: {
+        marginTop: 30,
+        backgroundColor: '#1EA0E5',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 46,
+        borderRadius: 15
+    },
+    buttonText: {
+        color: '#FFF',
+        fontSize: 16,
+        fontWeight: 'bold'
+
+    }
+
+
+})

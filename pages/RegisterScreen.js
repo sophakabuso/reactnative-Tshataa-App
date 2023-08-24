@@ -1,103 +1,124 @@
-import React from 'react';
-import { View, StyleSheet, Text, TextInput, TouchableOpacity } from 'react-native';
+import React from 'react'
+import { View, StyleSheet, Text ,TextInput ,Pressable } from 'react-native'
+
 
 export default function RegisterScreen({navigation}) {
+  
   return (
-    <View style={styles.container}>
-      <View style={styles.topContainer}>
-        <Text style={styles.appName}>Tshataa</Text>
+    <View>
+      <View style={registerStyles.container}>
+      <View style={registerStyles.topContainer}>
+        <Text style={registerStyles.appName}>Chatta</Text>
       </View>
-      <View style={styles.bottomContainer}>
-        <View style={styles.inputContainer}>
-          <View style={styles.inputContainer}>
-            <TextInput style={styles.textInput} placeholder="Full Name" />
-            <TextInput style={styles.textInput} placeholder="Email" />
-            <TextInput style={styles.textInput} placeholder="Password" secureTextEntry={true} />
-            <TextInput style={styles.textInput} placeholder="Confirm Password" secureTextEntry={true} />
-            <TouchableOpacity style={styles.actionButton}>
-              <Text style={styles.signIn}>Sign Up</Text>
-            </TouchableOpacity>
-            <View style={styles.signUpOpt}>
-              <Text style={styles.noAccText}>Already have an account?</Text>
-              <Text style={styles.signInText} onPress={()=>navigation.navigate('Login')}>Sign In</Text>
+      <View style={registerStyles.bottomContainer}>
+        <View style={registerStyles.innerContainer}>
+          <View style={registerStyles.inputContainer}>
+            <TextInput style={registerStyles.textInput} placeholder='Name' />
+            <TextInput style={registerStyles.textInput} placeholder='Email' />
+            <TextInput style={registerStyles.textInput} placeholder='Password' secureTextEntry />
+            <TextInput style={registerStyles.textInput} placeholder='Confirm Password' secureTextEntry  />
+          </View>
+          <View style={registerStyles.actionContainer}>
+            <Pressable style={registerStyles.actionButton} >
+              <Text style={registerStyles.signUp}>Sign Up</Text>
+            </Pressable>
+            <View style={registerStyles.registeredSection}>
+              <Text style={registerStyles.registeredText}>Registered?</Text>
+              <Text style={registerStyles.signInText} onPress={()=> navigation.navigate('Login')}>Sign In</Text>
+
             </View>
           </View>
         </View>
+
+
       </View>
     </View>
-  );
+    </View>
+
+  )
 }
 
-const styles = StyleSheet.create({
+
+const registerStyles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#26394D',
     width: '100%',
     paddingVertical: 80,
-    alignItems: 'center',
-    backgroundColor: '#26394D',
+    alignItems: 'center'
   },
   topContainer: {
     flex: 1.2,
-    width: '100%',
     justifyContent: 'center',
-    alignItems: 'center',
-  },
-  appName: {
-    fontFamily: 'berkshire',
-    fontSize: 48, 
-    fontWeight:'bold',
-    color:'#FFF'
-
-  },
+    alignItems: 'center'
+  }
+  ,
   bottomContainer: {
     flex: 2.8,
-    
     justifyContent: 'center',
-    
+    minHeight: 420
   },
-  innerContainer: {
+  innerContainer:{
+    padding: 20,
     height: 420,
     width: 320,
     backgroundColor: '#FFF',
-    borderRadius: 25,
-    padding: 20,
+    borderRadius: 25, 
+    
+  },
+  appName: {
+    fontSize: 54,
+    fontWeight: 'bold',
+    color: '#FFF',
+    fontFamily: 'barkshire'
   },
   inputContainer: {
-    flex:3,
-   
-   
-  },
-  actionButton: {
-    backgroundColor: '#007AFF',
-    borderRadius: 15,
-    height: 46,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 1,
-   
+    flex: 3,
+    
+
   },
   textInput: {
-    borderRadius: 15,
     height: 46,
-    borderColor: '#007AFF',
     borderWidth: 1,
-    marginVertical: 10,
+    borderRadius: 15,
+    borderColor: '#1EA0E5',
     padding: 10,
+    marginVertical: 10
+
   },
-  signUpOpt: {
+  actionContainer: {
+    flex: 1
+  },
+  actionButton: {
+    backgroundColor: '#1EA0E5',
+    height: 46,
+    borderRadius: 15,
+    alignItems: 'center',
+    justifyContent: 'center'
+
+  },
+  signUp: {
+    color: '#FFF',
+    backgroundColor: '#1EA0E5',
+    fontSize: 17,
+    fontWeight: 'bold'
+
+  },
+  registeredSection: {
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 10,
-  
+    alignItems: 'center'
+
   },
-  noAccText: {
+  registeredText: {
     fontSize: 16,
+
   },
   signInText: {
-    color: '#007AFF',
-    fontSize: 16,
+    color: '#1EA0E5',
     fontWeight: 'bold',
-    padding:10
-  },
-});
+    fontSize: 16,
+    padding: 10
+  }
+
+})
