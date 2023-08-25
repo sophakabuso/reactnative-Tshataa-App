@@ -33,6 +33,7 @@ const ChatInputComponent = ({
   }
 
 
+
   return (
     <View style={styles.container}>
       <Modal
@@ -131,7 +132,7 @@ const ChatInputComponent = ({
   )
 }
 
-export default ChatInputComponent
+
 
 const styles = StyleSheet.create({
   container: {
@@ -213,3 +214,4 @@ const styles = StyleSheet.create({
   }
 
 })
+export default ChatInputComponent

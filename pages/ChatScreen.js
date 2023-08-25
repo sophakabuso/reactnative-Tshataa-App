@@ -41,8 +41,23 @@ function ChatScreen() {
     <View style={styles.container}>
       <View style={styles.content}>
         <ChatComponent />
-       <MediaPicker isVisible={showMediaPicker}/>
+       {/*<MediaPicker isVisible={showMediaPicker}/>*/}
+       <View style={styles.mediaPickerContainer}>
+        <View style={styles.mediaPicker}>
+          <View style={styles.iconContainer}>
+            <Pressable>
+            <MaterialIcons name="camera" size={30} color="#FFF" style={styles.icons}/>
+            </Pressable>
+            <Pressable>
+              <MaterialIcons name="microphone" size={30} color="#FFF" style={styles.icons}/>
+            </Pressable>
 
+
+          </View>
+
+        </View>
+        </View>
+                   
 
         <View style={styles.input}>
           <ChatInputComponent
@@ -74,7 +89,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#26394D',
     flex: 1,
     overflow: 'hidden',
-    paddingBottom: 60
+
 
   },
   content: {
@@ -82,7 +97,27 @@ const styles = StyleSheet.create({
     paddingBottom: 60,
 
   },
-  input: {
+  
+  mediaPickerContainer:{
+    height:120,
+    width:'100%',
+    padding:10,
+    position:'absolute',
+    bottom:60
+  },
+  mediaPicker:{
+    heig:100,
+    widht: Dimensions.get('window').width -20,
+    backgroundColor:'#FFF',
+    borderRadius:25,
+    justifyContent: 'center',
+    alignItems:'center'
+  },
+  iconContainer:{
+
+  },
+
+input: {
     position: 'absolute',
     bottom: 0,
     width: '100',
