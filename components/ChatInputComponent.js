@@ -1,38 +1,37 @@
-import { Pressable, StyleSheet, TextInput, View, Text, Keyboard } from 'react-native'
-import React, { useRef, useState } from 'react'
-import { FontAwesome, Ionicons, MaterialIcons } from '@expo/vector-icons'
+
+import React, { useRef, useState } from 'react';
+import { Pressable, StyleSheet, TextInput, View, Text, Keyboard } from 'react-native';
+import { FontAwesome, Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { Modal } from 'react-native';
 import CameraComponent from './CameraComponent';
 import { Camera } from 'expo-camera';
 
-const ChatInputComponent = ({
-  showEmoGifBoard, isBoardVisible, messageText, setMessageText, sendMessage, recordAudio, showMediaPicker, recording
-}) => {
-
+export default function ChatInputComponent({
+  showEmoGifBoard, isBoardVisible, messageText, setMessageText, sendMessage,
+  recordAudio, showMediaPicker, recording, pauseRecording, stopRecording,
+  deleteRecording, isPaused, recordingTime
+}) {
   const inputRef = useRef();
-  const [isCamVisible, setIsCamVisisble] = useState(false);
+  const [isCamVisible, setIsCamVisible] = useState(false);
   const [hours, setHours] = useState();
   const [minutes, setMinutes] = useState(0);
-  const { seconds, setSeconds } = useState(5);
-  const [isPaused, setIsPaused] = useState(true);
+  const [seconds, setSeconds] = useState(5);
 
+  // Check Camera Permissions
   const checkCameraPermission = async () => {
     try {
-      let status
-      status = ((await Camera.getCameraPermissionsAsync())).status
+      let status;
+      status = (await Camera.getCameraPermissionsAsync()).status;
       if (status !== 'granted') {
-        status = (await Camera.requestCameraPermissionsAsync()).status
+        status = (await Camera.requestCameraPermissionsAsync()).status;
       }
-      if (status == 'granted') {
-        setIsCamVisisble(true);
+      if (status === 'granted') {
+        setIsCamVisible(true);
       }
     } catch (error) {
       console.error(error);
     }
-
   }
-
-
 
   return (
     <View style={styles.container}>
@@ -40,100 +39,97 @@ const ChatInputComponent = ({
         animationType='slide'
         visible={isCamVisible}
       >
-        <CameraComponent closeCam={() => setIsCamVisisble(false)} />
-
+        <CameraComponent closeCam={() => setIsCamVisible(false)} />
       </Modal>
 
+      {/* Left Section */}
       <View style={styles.leftView}>
-        {
-          !recording ? (
-            <>
-              {
-                isBoardVisible ? (
-                  <Pressable onPress={() => { showEmoGifBoard(false); inputRef.current.focus() }}>
-                    <MaterialIcons name='keyboard' size={24} style={styles.emoji} />
-                  </Pressable>
-
-                ) : (
-                  <Pressable onPress={() => { showEmoGifBoard(true); Keyboard.dismiss() }}>
-                    <MaterialIcons name='emoji-emotions' size={24} style={styles.emoji} />
-                  </Pressable>
-                )
-              }
-
-
-
-              <TextInput
-                ref={inputRef}
-                style={styles.textInput}
-                placeholder='Type a message'
-                onChangeText={(text) => setMessageText(text)}
-                value={messageText}
-              />
-              <Pressable onPress={() => checkCameraPermission()}>
-                <MaterialIcons name='camera-alt' size={24} style={styles.camera} />
+        {/* If not recording */}
+        {!recording ? (
+          <>
+            {/* Show emoji/gif board or keyboard */}
+            {isBoardVisible ? (
+              <Pressable onPress={() => { showEmoGifBoard(false); inputRef.current.focus() }}>
+                <MaterialIcons name='keyboard' size={24} style={styles.emoji} />
               </Pressable>
-              <Pressable onPress={() => showMediaPicker()}>
-                <FontAwesome name='paperclip' size={22} color={'#272727'} style={styles.clip} />
+            ) : (
+              <Pressable onPress={() => { showEmoGifBoard(true); Keyboard.dismiss() }}>
+                <MaterialIcons name='emoji-emotions' size={24} style={styles.emoji} />
               </Pressable>
-            </>
+            )}
 
-          ) : (
-            <View style={styles.recordingContainer}>
-              {
-                isPaused ? (
-                    <Pressable>
-                      <MaterialIcons name="fiber-manual-record" size={32 } color="rgb(200, 80, 80)" style={[styles.pauseIcon, {top: -3 }]} />
-                    </Pressable>
-                  ) : (
-                    <Pressable>
-                      <Ionicons name='pause' size={24} color={'black'} style={styles.pauseIcon} />
-                    </Pressable>
-                )
-              }
-              
-              <Text style={styles.text}>{ isPaused ? "Paused" :" Recording......"}</Text>
-              <View style={styles.recordingTime}>
-                {hours && <Text style={styles.text}>{hours + ':'}</Text>}
-                <Text style={styles.text}>{minutes + ':'}</Text>
-                <Text style={styles.text}>{seconds}</Text>
-              </View>
-              <Ionicons name="stop" size={24} color="rgb(200, 80, 80)"   style={styles.stopIcon}/>
-              <Pressable>
-                <MaterialIcons name="delete" size={24} color="rgb(200, 80, 80)" style={styles.deleteIcon} />
+            {/* Text Input */}
+            <TextInput
+              ref={inputRef}
+              style={styles.textInput}
+              placeholder='Type a message'
+              onChangeText={(text) => setMessageText(text)}
+              value={messageText}
+            />
+            {/* Camera */}
+            <Pressable onPress={() => checkCameraPermission()}>
+              <MaterialIcons name='camera-alt' size={24} style={styles.camera} />
+            </Pressable>
+            {/* Media Picker */}
+            <Pressable onPress={() => showMediaPicker()}>
+              <FontAwesome name='paperclip' size={22} color={'#272727'} style={styles.clip} />
+            </Pressable>
+          </>
+        ) : (
+          // Recording UI
+          <View style={styles.recordingContainer}>
+            {isPaused ? (
+              // Start Recording
+              <Pressable onPress={() => recordAudio()}>
+                <MaterialIcons name="fiber-manual-record" size={32} color="rgb(200, 80, 80)" style={[styles.pauseIcon, { top: -3 }]} />
               </Pressable>
+            ) : (
+              // Pause Recording
+              <Pressable onPress={() => pauseRecording()}>
+                <Ionicons name='pause' size={24} color={'black'} style={styles.pauseIcon} />
+              </Pressable>
+            )}
 
+            {/* Recording Status */}
+            <Text style={styles.text}>{isPaused ? "Paused" : " Recording..."}</Text>
+            {/* Recording Time */}
+            <View style={styles.recordingTime}>
+              {recordingTime.hours > 0 && <Text style={styles.text}>{recordingTime.hours + ':'}</Text>}
+              {hours && <Text style={styles.text}>{hours + ':'}</Text>}
+              <Text style={styles.text}>{recordingTime.minutes + ':'}</Text>
+              <Text style={styles.text}>{recordingTime.seconds}</Text>
             </View>
 
-          )
-        }
-
-
-      </View
-      >
-      <View style={styles.micConatiner}>
-        {
-          recording || messageText ? (
-            <Pressable onPress={() => sendMessage()}>
-              <MaterialIcons name='send' size={24} color={'black'} style={styles.mic} />
+            {/* Stop Recording */}
+            <Pressable onPress={() => stopRecording()}>
+              <Ionicons name="stop" size={24} color="rgb(200, 80, 80)" style={styles.stopIcon} />
             </Pressable>
-
-          ) : (
-            <Pressable onPress={() => recordAudio()}>
-              <FontAwesome name='microphone' size={24} style={styles.mic} />
+            {/* Delete Recording */}
+            <Pressable onPress={() => deleteRecording()}>
+              <MaterialIcons name="delete" size={24} color="rgb(200, 80, 80)" style={styles.deleteIcon} />
             </Pressable>
+          </View>
+        )}
+      </View>
 
-          )
-        }
-
-
+      {/* Microphone Container */}
+      <View style={styles.micContainer}>
+        {/* Show send button or microphone */}
+        {recording || messageText ? (
+          // Send Button
+          <Pressable onPress={() => sendMessage()}>
+            <MaterialIcons name='send' size={24} color={'black'} style={styles.mic} />
+          </Pressable>
+        ) : (
+          // Microphone
+          <Pressable onPress={() => recordAudio()}>
+            <FontAwesome name='microphone' size={24} style={styles.mic} />
+          </Pressable>
+        )}
       </View>
     </View>
-  )
+  );
 }
-
-
-
 const styles = StyleSheet.create({
   container: {
     padding: 10,
@@ -144,14 +140,12 @@ const styles = StyleSheet.create({
   leftView: {
     flex: 1,
     height: 42,
-    flex: 1,
     borderRadius: 21,
     backgroundColor: '#FFF',
     flexDirection: 'row',
     padding: 7,
     paddingHorizontal: 10,
     justifyContent: 'center'
-
   },
   emoji: {
     color: '#272727',
@@ -174,7 +168,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  micConatiner: {
+  micContainer: {
     height: 42,
     width: 42,
     borderRadius: 21,
@@ -189,7 +183,7 @@ const styles = StyleSheet.create({
   recordingContainer: {
     flex: 1,
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   pauseIcon: {
     marginRight: 10,
@@ -198,20 +192,16 @@ const styles = StyleSheet.create({
   recordingTime: {
     flexDirection: 'row',
     marginLeft: 'auto',
-    marginRight: 5,
+    marginRight: 5
   },
   text: {
-    color: '#4F4F4F',
+    color: '#4F4F4F'
   },
   deleteIcon: {
     marginLeft: 5,
     marginRight: 5
   },
-  stopIcon:{
-    marginLeft: 5,
-    // marginRight: 5
-
+  stopIcon: {
+    marginLeft: 5
   }
-
-})
-export default ChatInputComponent
+});

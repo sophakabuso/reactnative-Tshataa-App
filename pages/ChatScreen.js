@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+ import React, { useEffect, useState } from 'react'
 import { View, StyleSheet, Pressable, Dimensions } from 'react-native'
 import ChatComponent from '../components/ChatComponent'
 import ChatInputComponent from '../components/ChatInputComponent'
@@ -6,6 +6,7 @@ import KeyboardComponent from '../components/KeyboardComponent'
 import { FontAwesome, MaterialIcons } from '@expo/vector-icons'
 import MediaPicker from '../components/MediaPicker'
 import {Audio} from 'expo-av'
+let audioRecording
 
 function ChatScreen() {
 
@@ -13,7 +14,8 @@ function ChatScreen() {
   const [message, setMessage] = useState('');
   const [showMediaPicker, setShowMediaPicker] = useState(false);
   const [recording, setRecording] = useState();
-  
+  const [IsPaused, setIsPaused] = useState();
+  const [recordngTime, setRecordingTime] = useState({hours:0, minutes: 0, seconds: 0})
   const handleEmoji = (emo) => {
     console.log(emo.emoji);
     setMessage(message => {
@@ -26,18 +28,51 @@ function ChatScreen() {
   }
   const updateTime = (mils) => {
     console.log(mils)
+    const time = {
+      hours: Math.floor((mils.durationMillis /(1000 * 60 *60))),
+      minutes: Math.floor((mils.durationMillis /(1000 *60))%60),
+      seconds: Math.floor((mils.durationMillis / 1000)%60)
+    }
+    setRecordingTime(time);
+    console.log(time)
   }
   const recordAudio = async()  => {
-    Audio.requestPermissionsAsync();
-    const rec = new Audio.Recording();
-    await rec.prepareToRecordAsync();
-    rec.setOnRecordingStatusUpdate(updateTime)
-    setRecording(false);
-    await setRecording(rec)
-    recording.startAsync()
+    try {
+      if(!IsPaused){
+        await Audio.requestPermissionsAsync();
+        const rec = new Audio.Recording();
+        await rec.prepareToRecordAsync();
+        rec.setOnRecordingStatusUpdate(updateTime)
+   
+        audioRecording=rec
+        
+      }
+      await audioRecording.startAsync()
+      setIsPaused(false)
+      setRecording(true)
+    } catch(error) {
 
-  }
+    }
+    
+ }
+ const pauseRecording = async() => {
+  await audioRecording.pauseAsync();
+  setIsPaused(true)
+ }
+ const stopRecording = async() => {
+  await audioRecording.stopAndUnloadAsync();
+  const uri = audioRecording.getURI();
+  audioRecording = null
+  console.log(uri);
+  setIsPaused(false);
+  setRecording(false)
 
+ }
+ const deleteRecording = async() => {
+  await audioRecording.stopAndUnloadAsync();
+  setRecording(false);
+  setIsPaused(false)
+ }
 
   useEffect(() => {
     console.log(message);
@@ -65,7 +100,12 @@ function ChatScreen() {
             recordAudio={() => recordAudio()}
             showMediaPicker={() => setShowMediaPicker(!showMediaPicker)}
             recording={recording}
-
+            recordingPaused = {IsPaused}
+            pauseRecording = {() =>pauseRecording()}
+            IsPaused= {IsPaused}
+            stopRecording={() => stopRecording()}
+            deleteRecording={() => deleteRecording()}
+            recordngTime={recordngTime}
           />
         </View>
 
