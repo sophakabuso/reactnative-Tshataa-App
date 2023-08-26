@@ -79,7 +79,7 @@ const ChatInputComponent = ({
             </>
 
           ) : (
-            <View style={styles.recordingCont}>
+            <View style={styles.recordingContainer}>
               {
                 isPaused ? (
                     <Pressable>
@@ -186,7 +186,7 @@ const styles = StyleSheet.create({
   mic: {
     color: '#272727'
   },
-  recordingCont: {
+  recordingContainer: {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',

@@ -5,6 +5,7 @@ import ChatInputComponent from '../components/ChatInputComponent'
 import KeyboardComponent from '../components/KeyboardComponent'
 import { FontAwesome, MaterialIcons } from '@expo/vector-icons'
 import MediaPicker from '../components/MediaPicker'
+import {Audio} from 'expo-av'
 
 function ChatScreen() {
 
@@ -12,19 +13,28 @@ function ChatScreen() {
   const [message, setMessage] = useState('');
   const [showMediaPicker, setShowMediaPicker] = useState(false);
   const [recording, setRecording] = useState();
-
+  
   const handleEmoji = (emo) => {
     console.log(emo.emoji);
     setMessage(message => {
-      return message += emo.emoji
+      return message += emo.emojis
     })
 
   }
   const sendMessage = () => {
 
   }
-  const recordAudio = () => {
-    setRecording(true);
+  const updateTime = (mils) => {
+    console.log(mils)
+  }
+  const recordAudio = async()  => {
+    Audio.requestPermissionsAsync();
+    const rec = new Audio.Recording();
+    await rec.prepareToRecordAsync();
+    rec.setOnRecordingStatusUpdate(updateTime)
+    setRecording(false);
+    await setRecording(rec)
+    recording.startAsync()
 
   }
 
@@ -41,25 +51,11 @@ function ChatScreen() {
     <View style={styles.container}>
       <View style={styles.content}>
         <ChatComponent />
-       {/*<MediaPicker isVisible={showMediaPicker}/>*/}
-       <View style={styles.mediaPickerContainer}>
-        <View style={styles.mediaPicker}>
-          <View style={styles.iconContainer}>
-            <Pressable>
-            <MaterialIcons name="camera" size={30} color="#FFF" style={styles.icons}/>
-            </Pressable>
-            <Pressable>
-              <MaterialIcons name="microphone" size={30} color="#FFF" style={styles.icons}/>
-            </Pressable>
+        
+        <MediaPicker isVisible={showMediaPicker}/>
+        
 
-
-          </View>
-
-        </View>
-        </View>
-                   
-
-        <View style={styles.input}>
+         <View style={styles.input}>
           <ChatInputComponent
             messageText={message}
             setMessageText={(text) => setMessage(text)}
@@ -114,6 +110,13 @@ const styles = StyleSheet.create({
     alignItems:'center'
   },
   iconContainer:{
+    backgroundColor:'#1EA0E5',
+    borderRadius:'24',
+    height: 48,
+    width: 48,
+    justifyContent:'center',
+    alignItems:'center',
+    marginLeft: 20
 
   },
 
