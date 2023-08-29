@@ -19,11 +19,8 @@ Dependencies:
 expo-status-bar for status bar management.
 expo-font for custom fonts.
 @expo/vector-icons for icons.
-Contributors:
 
-Your Name
-License:
 
-MIT License
+
 
 Feel free to enhance the app and contribute!
